@@ -11,6 +11,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f5f5f5;
+  /* Improve mobile scrolling */
+  -webkit-overflow-scrolling: touch;
+  /* Prevent text size adjustment on orientation change */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 code {
@@ -33,6 +38,15 @@ code {
   font-size: 14px;
   font-weight: 500;
   transition: all 0.3s ease;
+  /* Better tap target for mobile */
+  min-height: 44px;
+  /* Prevent text selection on tap */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Remove tap highlight on mobile */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn-primary {
@@ -93,11 +107,23 @@ code {
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 14px;
+  /* Better touch target */
+  min-height: 44px;
 }
 
 .form-input:focus {
   outline: none;
   border-color: #6C3BE3;
+}
+
+/* Links should be easy to tap on mobile */
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Smooth scrolling for the app */
+html {
+  scroll-behavior: smooth;
 }
 
 .error-message {
@@ -156,8 +182,35 @@ code {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .container {
+    padding: 15px;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 10px;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  .form-input {
+    padding: 12px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 15px;
+    margin-bottom: 15px;
   }
 }
