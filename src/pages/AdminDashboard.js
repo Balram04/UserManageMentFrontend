@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { adminAPI } from '../services/api';
 import { toast } from 'react-toastify';
 import Navbar from '../components/Navbar';
@@ -18,12 +18,7 @@ const AdminDashboard = () => {
   const [modalAction, setModalAction] = useState(null);
   const [selectedUser, setSelectedUser] = useState(null);
 
-  useEffect(() => {
-    fetchUsers();
-    fetchStats();
-  }, [pagination.currentPage]);
-
-  const fetchUsers = async () => {
+  const fetchUsers = useCallback(async () => {
     try {
       setLoading(true);
       const response = await adminAPI.getAllUsers({ 
@@ -37,7 +32,12 @@ const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [pagination.currentPage]);
+
+  useEffect(() => {
+    fetchUsers();
+    fetchStats();
+  }, [fetchUsers]);
 
   const fetchStats = async () => {
     try {
