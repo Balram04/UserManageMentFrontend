@@ -682,7 +682,7 @@ MIT License - feel free to use this project for learning or commercial purposes.
 
 ## 👨‍💻 Author
 
-**Purple Merit Technologies**
+**Balram Prajapati**
 
 ---
 
